@@ -11,7 +11,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected $indexName        = 'test-monitoring-index-1';
     protected $connectionParams = [
         [
-            'host'   => 'logs-02.lead-vagrant.com',
+            'host'   => 'example.com',
             'port'   => '9200',
             'scheme' => 'http'
         ]
