@@ -2,6 +2,8 @@
   "name": "alexpon92/php2elk-metrics",
   "description": "Package to transfer application and monitoring metrics to ELK",
   "license": "MIT",
+  "type": "library",
+  "keywords": ["ELK","PHP","metrics","elasticsearch"],
   "authors": [
     {
       "name": "Alexander Ponomarev",
