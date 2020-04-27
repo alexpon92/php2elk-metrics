@@ -1,13 +1,13 @@
 PHP2ELK Metrics Package
 =====================
 
-* [Overview] (#overview)
-* [Installation] (#getting-started)
-* [Configuration] (#configuratuion)
-* [Usage] (#usage)
-* [Index and default mappings creation] (#index-creation)
-* [Check mappings] (#check-mappings)
-* [Non Laravel users] (#not-laravel-users)
+* [Overview](#overview)
+* [Installation](#getting-started)
+* [Configuration](#configuratuion)
+* [Usage](#usage)
+* [Index and default mappings creation](#index-creation)
+* [Check mappings](#check-mappings)
+* [Non Laravel users](#not-laravel-users)
 
 
 ## Overview
@@ -175,7 +175,7 @@ $producer->produceMetric($metric);
 
 After publish, document in elastic will have next structure:
 
-```json
+```
 {
   "application": "some-app", //may be changed in config
   "instance": "test-instance", //may be changed in config
