@@ -5,9 +5,9 @@ namespace Php2ElkMetrics\Laravel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Php2ElkMetrics\Laravel\Console\Commands\Collectors\FailedQueues\CollectFailedQueues;
+use Php2ElkMetrics\Laravel\Console\Commands\Mappings\CheckMappings;
 use Php2ElkMetrics\Laravel\Console\Commands\Migrations\SetUpIndex;
 use Php2ElkMetrics\Laravel\Console\Commands\Collectors\Postgres\CollectDeadRows;
-use Php2ElkMetrics\Mappings\MappingsChecker;
 
 class Php2ElkMetricsProvider extends ServiceProvider
 {
@@ -27,7 +27,7 @@ class Php2ElkMetricsProvider extends ServiceProvider
 
         $this->publishes(
             [
-                __DIR__ . 'publish/Php2ElkMetricsServicesProvider.php' => app_path(
+                __DIR__ . 'publish/Php2ElkMetricsServicesProvider.txt' => app_path(
                     'Providers/Php2ElkMetricsServicesProvider.php'
                 )
             ],
@@ -45,7 +45,7 @@ class Php2ElkMetricsProvider extends ServiceProvider
                     CollectFailedQueues::class,
                     CollectDeadRows::class,
                     SetUpIndex::class,
-                    MappingsChecker::class
+                    CheckMappings::class
                 ]
             );
         }
