@@ -59,19 +59,18 @@ class DeadRowsMetricsCollector
             $metricsCollection = new MetricsCollection();
 
             $deadRowsInfo = DB::connection($connection)
-                ->table('pg_stat_user_tables')
-                ->selectRaw(
-                    'relname    AS table_name,
+                ->select(
+                    'SELECT relname    AS table_name,
                     n_live_tup AS live_tuples,
                     n_dead_tup AS dead_tuples,
                     CASE
                         WHEN n_live_tup = 0 THEN 0
                         ELSE round(n_dead_tup::numeric / n_live_tup::numeric * 100::numeric, 2)
-                    END    AS percent'
-                )
-                ->get();
+                    END    AS percent
+                    FROM pg_stat_user_tables'
+                );
 
-            if ($deadRowsInfo->isEmpty()) {
+            if (empty($deadRowsInfo)) {
                 continue;
             }
 
