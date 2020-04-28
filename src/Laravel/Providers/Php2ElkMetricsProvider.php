@@ -27,7 +27,7 @@ class Php2ElkMetricsProvider extends ServiceProvider
 
         $this->publishes(
             [
-                __DIR__ . 'publish/Php2ElkMetricsServicesProvider.txt' => app_path(
+                __DIR__ . '/publish/Php2ElkMetricsServicesProvider.txt' => app_path(
                     'Providers/Php2ElkMetricsServicesProvider.php'
                 )
             ],

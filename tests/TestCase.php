@@ -35,8 +35,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            Php2ElkMetricsProvider::class,
-            Php2ElkMetricsServicesProvider::class
+            Php2ElkMetricsProvider::class
         ];
     }
 
