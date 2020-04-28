@@ -8,7 +8,7 @@ use Php2ElkMetrics\Laravel\Providers\Php2ElkMetricsServicesProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-    protected $indexName        = 'test-monitoring-index-1';
+    protected $indexName        = 'test-monitoring-index';
     protected $connectionParams = [
         [
             'host'   => 'example.com',

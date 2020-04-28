@@ -19,9 +19,6 @@ class MetricsProducerTest extends TestCase
 {
     public function testSingleMetricsDelivery(): void
     {
-        $this->artisan('php2elk:setup-index', ['--connection_name' => 'default', '--default_metrics' => 1]);
-
-        return;
         $metricsRegistry = new Registry();
 
         $metricsRegistry->add(
