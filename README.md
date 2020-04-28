@@ -36,7 +36,7 @@ php artisan vendor:publish --provider="Php2ElkMetrics\Laravel\Providers\Php2ElkM
 
 Also, you may publish another provider to register main package services in your service container:
 ```bash
-php artisan vendor:publish --provider="Php2ElkMetrics\Laravel\Providers\Php2ElkMetricsProvider" --tag=service-service-provider
+php artisan vendor:publish --provider="Php2ElkMetrics\Laravel\Providers\Php2ElkMetricsProvider" --tag=service-provider
 ```
 It will place package service provider in your ```App\Providers``` directory.  
 
@@ -115,7 +115,7 @@ class SomeVisitDurationMetric extends BaseMetric
 
 If you have published default package provider with command:
 ```bash
-php artisan vendor:publish --provider="Php2ElkMetrics\Laravel\Providers\Php2ElkMetricsProvider" --tag=service-service-provider
+php artisan vendor:publish --provider="Php2ElkMetrics\Laravel\Providers\Php2ElkMetricsProvider" --tag=service-provider
 ```
 
 You should edit it and add your new metric in register method:
