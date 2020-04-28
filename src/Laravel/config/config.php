@@ -72,8 +72,8 @@ return [
     */
     'collectors'    => [
         'failed_queue' => [
-            'db_connection' => config('queue.database'),
-            'table_name'    => config('queue.failed.table')
+            'db_connection' => env('DB_CONNECTION'),
+            'table_name'    => 'failed_jobs'
         ],
 
         'postgres' => [
@@ -81,7 +81,7 @@ return [
                 'min_live_tuples'       => 50000,
                 'min_percent_threshold' => 3.0,
                 'db_connections'        => [
-                    config('database.default')
+                    env('DB_CONNECTION')
                 ]
             ]
         ]
