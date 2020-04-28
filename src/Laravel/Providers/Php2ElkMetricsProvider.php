@@ -20,7 +20,7 @@ class Php2ElkMetricsProvider extends ServiceProvider
     {
         $this->publishes(
             [
-                __DIR__ . '/../config/php2elk-metrics.php' => config_path('php2elk-metrics.php'),
+                __DIR__ . '/../config/config.php' => config_path('php2elk-metrics.php'),
             ],
             'config'
         );
@@ -35,7 +35,7 @@ class Php2ElkMetricsProvider extends ServiceProvider
         );
 
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/php2elk-metrics.php',
+            __DIR__ . '/../config/config.php',
             'php2elk-metrics'
         );
 
