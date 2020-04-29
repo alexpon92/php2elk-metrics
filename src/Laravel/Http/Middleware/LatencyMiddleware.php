@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Php2ElkMetrics\Events\MetricEvent;
 use Php2ElkMetrics\Metrics\DefaultMetrics\Common\LatencyMetric;
+use Php2ElkMetrics\MetricsProducer\MetricsProducer;
 
 class LatencyMiddleware
 {
@@ -48,16 +49,26 @@ class LatencyMiddleware
         );
 
         $time = new \DateTime();
-        event(
-            new MetricEvent(
-                new LatencyMetric(
-                    $methodName,
-                    $latency,
-                    $time
-                ),
-                $time
-            )
+
+        $latencyMetric = new LatencyMetric(
+            $methodName,
+            $latency,
+            $time
         );
+
+        if (config('php2elk-metrics.middleware.latency_middleware.sync_send')) {
+            /** @var MetricsProducer $producer */
+            $producer = app(MetricsProducer::class);
+            try {
+                $producer->produceMetric($latencyMetric);
+            } catch (\Throwable $e) {
+
+            }
+        } else {
+            event(
+                new MetricEvent($latencyMetric, $time)
+            );
+        }
     }
 
     private function compileMethodName(string $httpMethod, string $methodName): string

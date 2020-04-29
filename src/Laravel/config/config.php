@@ -92,5 +92,11 @@ return [
             'connection' => 'redis',
             'queue'      => 'php2elk-metrics'
         ]
+    ],
+
+    'middleware' => [
+        'latency_middleware' => [
+            'sync_send' => true
+        ]
     ]
 ];
