@@ -84,7 +84,8 @@ class Php2ElkMetricsServicesProvider extends ServiceProvider implements Deferrab
     {
         return [
             Registry::class,
-            MetricsProducer::class
+            MetricsProducer::class,
+            LatencyMiddleware::class
         ];
     }
 }
