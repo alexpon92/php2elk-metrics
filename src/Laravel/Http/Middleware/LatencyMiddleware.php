@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Closure;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
+use Php2ElkMetrics\Events\MetricEvent;
 use Php2ElkMetrics\Metrics\DefaultMetrics\Common\LatencyMetric;
 
 class LatencyMiddleware
@@ -46,11 +47,15 @@ class LatencyMiddleware
             Route::currentRouteName() ?? $request->getRequestUri()
         );
 
+        $time = new \DateTime();
         event(
-            new LatencyMetric(
-                $methodName,
-                $latency,
-                new \DateTime()
+            new MetricEvent(
+                new LatencyMetric(
+                    $methodName,
+                    $latency,
+                    $time
+                ),
+                $time
             )
         );
     }
