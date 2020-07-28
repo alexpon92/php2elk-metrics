@@ -2,6 +2,7 @@
 
 return [
     'application' => env('APP_NAME'),
+    'send_requests' => env('APP_ENV') !== 'local',
 
     'instance'    => gethostname(),
 

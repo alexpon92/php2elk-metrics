@@ -42,34 +42,49 @@ final class MetricsProducer
     private $logger;
 
     /**
+     * @var bool
+     */
+    private $sendRequest;
+
+    /**
      * MetricsProducer constructor.
      *
      * @param Registry $metricsRegistry
      * @param ClientBuilder $clientBuilder
      * @param string $instance
      * @param string $application
+     * @param bool $sendRequests
      */
     public function __construct(
         Registry $metricsRegistry,
         ClientBuilder $clientBuilder,
         string $instance,
-        string $application
+        string $application,
+        bool $sendRequests = true
     ) {
         $this->metricsRegistry = $metricsRegistry;
         $this->clientBuilder   = $clientBuilder;
         $this->instance        = $instance;
         $this->application     = $application;
+        $this->sendRequest     = $sendRequests;
     }
 
     /**
      * @param BaseMetric $metric
+     * @param bool $forceSend
+     *
+     * @return Response
      *
      * @throws BadResponseFormatException
      * @throws MetricConfigNotFoundException
      * @throws ProduceMetricException
      */
-    public function produceMetric(BaseMetric $metric): Response
+    public function produceMetric(BaseMetric $metric, bool $forceSend = false): Response
     {
+        if (!($this->sendRequest || $forceSend)) {
+            return new Response('', '');
+        }
+
         $metricConfig = $this->metricsRegistry->findByMetric($metric);
         if (!$metricConfig) {
             if ($this->logger) {

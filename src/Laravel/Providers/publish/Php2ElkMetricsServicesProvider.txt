@@ -70,7 +70,8 @@ class Php2ElkMetricsServicesProvider extends ServiceProvider implements Deferrab
                     $app->make(Registry::class),
                     $app->make(ClientBuilder::class),
                     config('php2elk-metrics.instance'),
-                    config('php2elk-metrics.application')
+                    config('php2elk-metrics.application'),
+                    config('php2elk-metrics.send_requests')
                 );
 
                 $producer->setLogger($app->make(LoggerInterface::class));
