@@ -247,3 +247,4 @@ It helps you not to corrupt your index and to check new metrics mappings in elas
 
 ## Non Laravel users
 WIP
+
