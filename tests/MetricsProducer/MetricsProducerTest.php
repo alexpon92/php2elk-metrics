@@ -25,6 +25,7 @@ class MetricsProducerTest extends TestCase
             new MetricsConfig(
                 LatencyMetric::getName(),
                 $this->indexName,
+                $this->indexPattern,
                 $this->connectionParams
             )
         );
@@ -60,6 +61,7 @@ class MetricsProducerTest extends TestCase
             new MetricsConfig(
                 LatencyMetric::getName(),
                 $this->indexName,
+                $this->indexPattern,
                 $this->connectionParams
             )
         );

@@ -35,25 +35,29 @@ class Php2ElkMetricsServicesProvider extends ServiceProvider implements Deferrab
                 /** @var Container $app */
                 $metricRegistry = new Registry();
 
-                $defaultIndex = config('php2elk-metrics.default_index');
-                $defaultConnection = config('php2elk-metrics.connections.default');
+                $defaultIndex        = config('php2elk-metrics.default_index');
+                $defaultIndexPattern = config('php2elk-metrics.default_index_pattern');
+                $defaultConnection   = config('php2elk-metrics.connections.default');
 
                 $metricRegistry->add(
                     new MetricsConfig(
                         FailedQueueJobsMetric::getName(),
                         $defaultIndex,
+                        $defaultIndexPattern,
                         $defaultConnection
                     )
                 )->add(
                     new MetricsConfig(
                         TableDeadRowsMetric::getName(),
                         $defaultIndex,
+                        $defaultIndexPattern,
                         $defaultConnection
                     )
                 )->add(
                     new MetricsConfig(
                         LatencyMetric::getName(),
                         $defaultIndex,
+                        $defaultIndexPattern,
                         $defaultConnection
                     )
                 );

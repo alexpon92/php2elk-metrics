@@ -26,19 +26,21 @@ class MappingsCheckerTest extends TestCase
             new MetricsConfig(
                 LatencyMetric::getName(),
                 $this->indexName,
+                $this->indexPattern,
                 $this->connectionParams
             )
         )->add(
             new MetricsConfig(
                 TableDeadRowsMetric::getName(),
                 $this->indexName,
+                $this->indexPattern,
                 $this->connectionParams
             )
         );
 
         $this->mockElasticBuilder(
             [
-                'test-monitoring-index' => [
+                'test-rollover-monitoring-index-000001' => [
                     'mappings' => [
                         'properties' => [
                             'application' => [
@@ -100,12 +102,14 @@ class MappingsCheckerTest extends TestCase
             new MetricsConfig(
                 LatencyMetric::getName(),
                 $this->indexName,
+                $this->indexPattern,
                 $this->connectionParams
             )
         )->add(
             new MetricsConfig(
                 TableDeadRowsMetric::getName(),
                 $this->indexName,
+                $this->indexPattern,
                 $this->connectionParams
             )
         );
@@ -114,7 +118,7 @@ class MappingsCheckerTest extends TestCase
 
         $this->mockElasticBuilder(
             [
-                'test-monitoring-index' => [
+                'test-rollover-monitoring-index-000001' => [
                     'mappings' => [
                         'properties' => [
                             'application' => [
@@ -166,12 +170,14 @@ class MappingsCheckerTest extends TestCase
             new MetricsConfig(
                 LatencyMetric::getName(),
                 $this->indexName,
+                $this->indexPattern,
                 $this->connectionParams
             )
         )->add(
             new MetricsConfig(
                 TableDeadRowsMetric::getName(),
                 $this->indexName,
+                $this->indexPattern,
                 $this->connectionParams
             )
         );

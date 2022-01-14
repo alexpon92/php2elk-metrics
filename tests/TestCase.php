@@ -8,7 +8,8 @@ use Php2ElkMetrics\Laravel\Providers\Php2ElkMetricsServicesProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-    protected $indexName        = 'test-monitoring-index';
+    protected $indexName        = 'test-rollover-monitoring-index-write';
+    protected $indexPattern     = 'test-rollover-monitoring-index-\d{6}';
     protected $connectionParams = [
         [
             'host'   => 'example.com',

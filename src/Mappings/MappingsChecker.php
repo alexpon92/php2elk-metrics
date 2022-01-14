@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Php2ElkMetrics\Mappings;
 
 use Php2ElkMetrics\Mappings\Exceptions\IndexMappingsNotFoundException;
+use Php2ElkMetrics\Mappings\Exceptions\IndexNotMatchedException;
 use Php2ElkMetrics\Mappings\Exceptions\MetricMappingNotFoundException;
 use Php2ElkMetrics\MetricsRegistry\MetricsConfig;
 use Php2ElkMetrics\MetricsRegistry\Registry;
@@ -79,11 +80,30 @@ final class MappingsChecker
      * @param array         $mappings
      * @param MetricsConfig $config
      *
-     * @throws MetricMappingNotFoundException
+     * @throws MetricMappingNotFoundException|IndexNotMatchedException
      */
     private function checkMapping(array $mappings, MetricsConfig $config): void
     {
-        if (!isset($mappings[$config->getIndexName()]['mappings']['properties'][$config->getMetricName()])) {
+        $indexes = array_keys($mappings);
+
+        $pattern = $config->getIndexPattern();
+
+        $matchedIndex = null;
+
+        foreach ($indexes as $index) {
+            if (preg_match("/$pattern/u", $index) === 1) {
+                $matchedIndex = $index;
+                break;
+            }
+        }
+
+        if(!$matchedIndex) {
+            throw new IndexNotMatchedException(
+                "Index not matched by expression {$config->getIndexPattern()}"
+            );
+        }
+
+        if (!isset($mappings[$matchedIndex]['mappings']['properties'][$config->getMetricName()])) {
             throw new MetricMappingNotFoundException(
                 "Mapping for {$config->getMetricName()} is not found in index {$config->getIndexName()}"
             );
