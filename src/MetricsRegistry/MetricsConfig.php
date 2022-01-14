@@ -17,6 +17,11 @@ final class MetricsConfig
     private $indexName;
 
     /**
+     * @var string
+     */
+    private $indexPattern;
+
+    /**
      * @var array
      */
     private $connectionParams;
@@ -26,12 +31,14 @@ final class MetricsConfig
      *
      * @param string $metricName
      * @param string $indexName
-     * @param array  $connectionParams
+     * @param string $indexPattern
+     * @param array $connectionParams
      */
-    public function __construct(string $metricName, string $indexName, array $connectionParams)
+    public function __construct(string $metricName, string $indexName, string $indexPattern, array $connectionParams)
     {
         $this->metricName       = $metricName;
         $this->indexName        = $indexName;
+        $this->indexPattern     = $indexPattern;
         $this->connectionParams = $connectionParams;
     }
 
@@ -49,6 +56,14 @@ final class MetricsConfig
     public function getIndexName(): string
     {
         return $this->indexName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIndexPattern(): string
+    {
+        return $this->indexPattern;
     }
 
     /**

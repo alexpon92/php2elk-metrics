@@ -35,7 +35,8 @@ return [
         ]
     ],
 
-    'default_index' => 'monitoring-index',
+    'default_index'         => env('PHP2ELK_INDEX_NAME'),
+    'default_index_pattern' => env('PHP2ELK_INDEX_PATTERN'),
 
     /*
     |--------------------------------------------------------------------------
