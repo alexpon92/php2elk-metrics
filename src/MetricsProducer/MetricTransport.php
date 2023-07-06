@@ -76,7 +76,7 @@ final class MetricTransport implements JsonSerializable
         return $this->metric;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'instance'    => $this->instance,
